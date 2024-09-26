@@ -76,6 +76,9 @@ jobs:
             packages/*/build
 
   docker-build:
+    permissions:
+      contents: read
+      packages: write
     needs: build
     runs-on: ubuntu-latest
     strategy:
