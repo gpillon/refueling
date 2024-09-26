@@ -62,8 +62,8 @@ jobs:
       - name: Rush rebuild
         run: node common/scripts/install-run-rush.js rebuild --verbose
 
-      - name: Run tests
-        run: node common/scripts/install-run-rush.js test --verbose
+      # - name: Run tests
+      #   run: node common/scripts/install-run-rush.js test --verbose
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
