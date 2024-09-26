@@ -3,7 +3,7 @@ entries:
   benza:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-09-26T15:47:57.580085221Z"
+    created: "2024-09-26T19:07:30.828820072Z"
     description: A Helm chart for Kubernetes
     digest: 5b3c5eec9dcd8f5c6a21c0b7c641927731b0922818ce942bc8851e4d4911b459
     name: benza
@@ -11,4 +11,4 @@ entries:
     urls:
     - https://gpillon.github.io/refueling/benza-0.1.8.tgz
     version: 0.1.8
-generated: "2024-09-26T15:47:57.579680397Z"
+generated: "2024-09-26T19:07:30.828405139Z"
