@@ -310,7 +310,7 @@
       "projectFolder": "packages/backend"
     },
     {
-      "packageName": "@gpillon/conta-broda-frontend",
+      "packageName": "conta-broda-frontend",
       "projectFolder": "packages/frontend"
     }
     // {
