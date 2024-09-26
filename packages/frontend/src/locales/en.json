@@ -47,5 +47,19 @@
     "totalKilometers": "Total Kilometers",
     "averageKilometersPerRefueling": "Avg. Km per Refueling",
     "averageCostPer100km": "Avg. Cost per 100km",
-    "averageLitersPer100km": "Avg. Liters per 100km"
+    "averageLitersPer100km": "Avg. Liters per 100km",
+    "welcomeMessage": "Welcome to the Refueling Manager",
+    "homeDescription": "This application allows you to manage your vehicles and refuelings. You can add, edit, and delete vehicles and refuelings. You can also view statistics about your refuelings.",
+    "viewVehicles": "View Vehicles",
+    "viewRefuelings": "View Refuelings",
+    "viewStatistics": "View Statistics",
+    "home": "Home",
+    "cancel": "Cancel",
+    "admin": "Admin",
+    "adminUserManagement": "User Management",
+    "role": "Role",
+    "email": "Email",
+    "addUser": "Add User",
+    "noUsersFound": "No users found",
+    "user": "User"
 }

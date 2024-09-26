@@ -47,5 +47,20 @@
     "totalKilometers": "Chilometri Totali",
     "averageKilometersPerRefueling": "Media Km per Rifornimento",
     "averageCostPer100km": "Costo Medio per 100km",
-    "averageLitersPer100km": "Media Litri per 100km"
+    "averageLitersPer100km": "Media Litri per 100km",
+    "welcomeMessage": "Benvenuto nel Gestore dei Rifornimenti",
+    "homeDescription": "Questa applicazione ti permette di gestire i tuoi veicoli e i rifornimenti. Puoi aggiungere, modificare e eliminare veicoli e rifornimenti. Puoi anche visualizzare statistiche sui tuoi rifornimenti.",
+    "viewVehicles": "Visualizza Veicoli",
+    "viewRefuelings": "Visualizza Rifornimenti",
+    "viewStatistics": "Visualizza Statistiche",
+    "home": "Home",
+    "cancel": "Annulla",
+    "admin": "Amministratore",
+    "adminUserManagement": "Gestione Utenti",
+    "role": "Ruolo",
+    "email": "Email",
+    "addUser": "Aggiungi Utente",
+    "noUsersFound": "Nessun utente trovato",
+    "user": "Utente"
+    
   }

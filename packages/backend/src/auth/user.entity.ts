@@ -11,5 +11,8 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ default: 'user' })
+  role: string;
+
   // Add other user properties as needed
 }

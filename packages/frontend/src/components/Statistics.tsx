@@ -89,7 +89,7 @@ const Statistics: React.FC = () => {
     const sortedRefuelings = [...refuelings].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     return sortedRefuelings.map((refueling) => ({
       date: new Date(refueling.date).toLocaleDateString(),
-      cost: refueling.cost,
+      cost: refueling.cost
     }));
   };
 
@@ -199,42 +199,45 @@ const Statistics: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
           <h2 className="text-2xl font-semibold mb-4">{t('refuelingsByVehicle')}</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={getRefuelingsByVehicle()}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                fill="#8884d8"
-                label
-              >
-                {getRefuelingsByVehicle().map((_entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-semibold mb-4">{t('costOverTime')}</h2>
-            <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={getCostOverTime()}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <CustomYAxis />
+          <div className="flex-grow" style={{ minHeight: "500px" }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={getRefuelingsByVehicle()}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius="80%"
+                  fill="#8884d8"
+                  label
+                >
+                  {getRefuelingsByVehicle().map((_entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="cost" stroke="#8884d8" activeDot={{ r: 8 }} />
-                </LineChart>
+              </PieChart>
             </ResponsiveContainer>
-            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-2xl font-semibold mb-4">{t('costOverTime')}</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={getCostOverTime()}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <CustomYAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="cost" name={t('cost')} stroke="#8884d8" activeDot={{ r: 8 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

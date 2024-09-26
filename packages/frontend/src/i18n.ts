@@ -4,9 +4,11 @@ import { initReactI18next } from 'react-i18next';
 import enTranslations from './locales/en.json';
 import esTranslations from './locales/es.json';
 import itTranslations from './locales/it.json';
+import rmTranslations from './locales/rm.json';
+import naTranslations from './locales/na.json';
 
 const getStoredLanguage = () => {
-  return localStorage.getItem('preferredLanguage') || 'en';
+  return localStorage.getItem('preferredLanguage') || 'rm';
 };
 
 const setStoredLanguage = (lang: string) => {
@@ -17,12 +19,14 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
+      rm: { translation: rmTranslations },
+      na: { translation: naTranslations },
       en: { translation: enTranslations },
       es: { translation: esTranslations },
       it: { translation: itTranslations },
     },
     lng: getStoredLanguage(),
-    fallbackLng: 'en',
+    fallbackLng: 'rm',
     interpolation: {
       escapeValue: false,
     },

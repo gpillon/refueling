@@ -19,6 +19,7 @@ export class UsersService {
       this.usersRepository.update(
         { username: 'admin' },
         {
+          role: 'admin',
           password: bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'admin', 10),
         },
       );
@@ -41,6 +42,24 @@ export class UsersService {
   }
 
   async create(user: Omit<User, 'id'>): Promise<User> {
+    const password = bcrypt.hashSync(user.password, 10);
+    user.password = password;
+    const existingUser = await this.findOne(user.username);
+    if (existingUser) {
+      throw new Error('User already exists');
+    }
+    return this.usersRepository.save(user);
+  }
+
+  async update(user: Omit<User, 'id'>): Promise<User> {
+    const existingUser = await this.findOne(user.username);
+    if (!existingUser) {
+      throw new Error('User does not exist');
+    }
+    if (user.password) {
+      const password = bcrypt.hashSync(user.password, 10);
+      user.password = password;
+    }
     return this.usersRepository.save(user);
   }
 

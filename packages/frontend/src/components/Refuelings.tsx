@@ -69,7 +69,6 @@ const Refuelings: React.FC = () => {
         params.append('vehicleId', selectedVehicleId.toString());
       }
       const data = await getRefuelings(params);
-      console.log('Fetched refuelings:', data);
       if (Array.isArray(data)) {
         setRefuelings(data);
       } else {

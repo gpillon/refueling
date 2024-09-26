@@ -56,3 +56,17 @@ export interface Vehicle {
     data: T;
   }
   
+  export interface User {
+    id: number;
+    username: string;
+    role: string;
+  }
+
+  export interface DecodedToken {
+    role: string;
+    sub: string;
+    iat: number;
+    exp: number;
+    username: string;
+  }
+  

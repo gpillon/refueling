@@ -21,7 +21,7 @@ import { Vehicle } from './entities/vehicle.entity';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 
-@ApiTags()
+@ApiTags('Vehicle')
 @Controller()
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()

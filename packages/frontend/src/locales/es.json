@@ -47,5 +47,19 @@
     "totalKilometers": "Kilómetros Totales",
     "averageKilometersPerRefueling": "Kilómetros Promedio por Repostaje",
     "averageCostPer100km": "Costo Promedio por 100 km",
-    "averageLitersPer100km": "Litros Promedio por 100 km"
+    "averageLitersPer100km": "Litros Promedio por 100 km",
+    "welcomeMessage": "Bienvenido al Administrador de Repostajes",
+    "homeDescription": "Esta aplicación le permite administrar sus vehículos y repostajes. Puede agregar, editar y eliminar vehículos y repostajes. También puede ver estadísticas sobre sus repostajes.",
+    "viewVehicles": "Ver Vehículos",
+    "viewRefuelings": "Ver Repostajes",
+    "viewStatistics": "Ver Estadísticas",
+    "home": "Inicio",
+    "cancel": "Cancelar",
+    "admin": "Administrador",
+    "adminUserManagement": "Gestión de Usuarios",
+    "role": "Rol",
+    "email": "Correo electrónico",
+    "addUser": "Añadir Usuario",
+    "noUsersFound": "No se encontraron usuarios",
+    "user": "Usuario"
   }

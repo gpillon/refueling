@@ -12,7 +12,6 @@ async function bootstrap() {
     .setTitle('Vehicle API')
     .setDescription('The Vehicle API description')
     .setVersion('1.0')
-    .addTag('vehicles')
     .addBearerAuth()
     .build();
 
@@ -25,7 +24,7 @@ async function bootstrap() {
     credentials: true,
     allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization',
   });
-  
+
   await app.listen(3000);
 }
 bootstrap();

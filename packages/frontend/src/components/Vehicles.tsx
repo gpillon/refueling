@@ -20,7 +20,6 @@ const Vehicles: React.FC = () => {
     try {
       setIsLoading(true);
       const data = await getVehicles();
-      console.log('Fetched vehicles:', data);
       if (Array.isArray(data)) {
         setVehicles(data);
       } else {

@@ -27,7 +27,8 @@
     "i18next": "~23.15.1",
     "react-i18next": "~15.0.2",
     "recharts": "~2.12.7",
-    "cross-env": "~7.0.3"
+    "cross-env": "~7.0.3",
+    "jwt-decode": "~4.0.0"
   },
   "scripts": {
     "start": "cross-env PORT=3001 react-scripts start",
