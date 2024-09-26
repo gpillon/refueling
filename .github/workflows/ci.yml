@@ -55,6 +55,7 @@ jobs:
             common/temp
             **/dist
             **/lib
+            **/build
           key: ${{ runner.os }}-rush-build-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-rush-build-
@@ -62,8 +63,8 @@ jobs:
       - name: Rush rebuild
         run: node common/scripts/install-run-rush.js rebuild --verbose
 
-      # - name: Run tests
-      #   run: node common/scripts/install-run-rush.js test --verbose
+      - name: Run tests
+        run: node common/scripts/install-run-rush.js test --verbose
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -72,6 +73,7 @@ jobs:
           path: |
             packages/*/dist
             packages/*/lib
+            packages/*/build
 
   docker-build:
     needs: build
