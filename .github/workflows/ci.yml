@@ -26,26 +26,67 @@ jobs:
         with:
           node-version: 20
 
+      - name: Cache Rush dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            common/temp
+            **/.rush
+          key: ${{ runner.os }}-rush-${{ hashFiles('**/rush.json', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-rush-
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Verify Change Logs
         run: node common/scripts/install-run-rush.js change --verify
 
       - name: Rush Install
         run: node common/scripts/install-run-rush.js install
 
+      - name: Cache Rush build
+        uses: actions/cache@v3
+        with:
+          path: |
+            common/temp
+            **/dist
+            **/lib
+          key: ${{ runner.os }}-rush-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-rush-build-
+
       - name: Rush rebuild
         run: node common/scripts/install-run-rush.js rebuild --verbose
 
-      # - name: Rush Run Units Test (Backend)
-      #   run: | 
-      #     cd packages/backend 
-      #     node ../../common/scripts/install-run-rushx.js test --ci
-      #     cd ../../
+      - name: Run tests
+        run: node common/scripts/install-run-rush.js test --verbose
 
-      # - name: Run e2e Test (Backend)
-      #   run: | 
-      #     cd packages/backend 
-      #     npm run test:e2e
-      #     cd ../../
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: |
+            packages/*/dist
+            packages/*/lib
+
+  docker-build:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [frontend, backend]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: packages
 
       - name: Extract version or set default
         id: get_version
@@ -71,20 +112,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Frontend Docker image
-        uses: docker/build-push-action@v4
+      - name: Cache Docker layers
+        uses: actions/cache@v3
         with:
-          context: ./packages/frontend
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/benza-simulator-frontend:${{ steps.get_version.outputs.version }}
-          labels: ${{ steps.meta.outputs.labels }}
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ matrix.image }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-${{ matrix.image }}-
 
-      - name: Build and push Backend Docker image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./packages/backend
+          context: ./packages/${{ matrix.image }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/benza-simulator-backend:${{ steps.get_version.outputs.version }}
+          tags: ghcr.io/${{ github.repository_owner }}/benza-simulator-${{ matrix.image }}:${{ steps.get_version.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
