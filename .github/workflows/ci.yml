@@ -27,7 +27,7 @@ jobs:
           node-version: 20
 
       - name: Cache Rush dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             common/temp
@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-rush-
 
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
@@ -49,7 +49,7 @@ jobs:
         run: node common/scripts/install-run-rush.js install
 
       - name: Cache Rush build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             common/temp
@@ -115,7 +115,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache Docker layers
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ matrix.image }}-${{ github.sha }}
