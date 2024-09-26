@@ -23,7 +23,7 @@ import { Query } from '@nestjs/common';
 import { QueryParamsDto } from './dto/query-params.dto';
 
 @ApiTags('Refuelings')
-@Controller('refuelings')
+@Controller()
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 export class RefuelingController {

@@ -38,48 +38,48 @@ api.interceptors.request.use((config) => {
   return config;
 });
 export const login = async (username: string, password: string): Promise<LoginResponse> => {
-    const response = await api.post<LoginResponse>('/users/login', { username, password });
+    const response = await api.post<LoginResponse>('/api/users/login', { username, password });
     return response.data;
   };
   
   export const getVehicles = async (): Promise<Vehicle[]> => {
-    const response = await api.get<Vehicle[]>('/vehicles');
+    const response = await api.get<Vehicle[]>('/api/vehicles');
     return response.data;
   };
   
   export const createVehicle = async (vehicleData: NewVehicle): Promise<Vehicle> => {
-    const response = await api.post<Vehicle>('/vehicles', vehicleData);
+    const response = await api.post<Vehicle>('/api/vehicles', vehicleData);
     return response.data;
   };
   
   export const updateVehicle = async (id: number, vehicleData: Partial<Vehicle>): Promise<Vehicle> => {
-    const response = await api.patch<Vehicle>(`/vehicles/${id}`, vehicleData);
+    const response = await api.patch<Vehicle>(`/api/vehicles/${id}`, vehicleData);
     return response.data;
   };
   
   export const deleteVehicle = async (id: number): Promise<void> => {
-    await api.delete(`/vehicles/${id}`);
+    await api.delete(`/api/vehicles/${id}`);
   };
   
   export const getRefuelings = async (params: URLSearchParams): Promise<Refueling[]> => {
-    const response = await api.get<Refueling[]>('/refuelings', { params });
+    const response = await api.get<Refueling[]>('/api/refuelings', { params });
     return response.data;
   };
   
   export const createRefueling = async (refuelingData: NewRefueling): Promise<Refueling> => {
-    const response = await api.post<Refueling>('/refuelings', refuelingData);
+    const response = await api.post<Refueling>('/api/refuelings', refuelingData);
     return response.data;
   };
   
   export const updateRefueling = async (id: number, refuelingData: Partial<Refueling>): Promise<Refueling> => {
     refuelingData.vehicleId = refuelingData.vehicle?.id || 0;
     Reflect.deleteProperty(refuelingData, 'vehicle');
-    const response = await api.patch<Refueling>(`/refuelings/${id}`, refuelingData);
+    const response = await api.patch<Refueling>(`/api/refuelings/${id}`, refuelingData);
     return response.data;
   };
   
   export const deleteRefueling = async (id: number): Promise<void> => {
-    await api.delete(`/refuelings/${id}`);
+    await api.delete(`/api/refuelings/${id}`);
   };
 
 export default api;
