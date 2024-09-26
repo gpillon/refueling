@@ -18,6 +18,9 @@ spec:
         - name: {{ .Chart.Name }}-backend
           image: "{{ .Values.backend.repository }}:{{ .Values.backend.tag }}"
           imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: {{ include "benza.fullname" . }}-backend-env
           ports:
             - containerPort: 3000
           volumeMounts:

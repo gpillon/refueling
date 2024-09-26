@@ -30,6 +30,7 @@ export class UsersService {
     if (!adminUser) {
       const user = new User();
       user.username = 'admin';
+      user.role = 'admin';
       user.password = bcrypt.hashSync(adminPassword, 10);
       await this.usersRepository.save(user);
     }

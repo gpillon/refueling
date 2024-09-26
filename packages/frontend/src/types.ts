@@ -46,6 +46,7 @@ export interface Vehicle {
     isAuthenticated: boolean;
     login: (username: string, password: string) => Promise<void>;
     logout: () => void;
+    handleUnauthorized: () => void;
   }
   
   export interface LoginResponse {
