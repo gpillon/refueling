@@ -20,3 +20,14 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          volumeMounts:
+            - name: {{ include "benza.fullname" . }}-backend-storage
+              mountPath: /app/db
+      volumes:
+        - name: {{ include "benza.fullname" . }}-backend-storage
+          {{- if .Values.storage.persistance }}
+          persistentVolumeClaim:
+            claimName: {{ include "benza.fullname" . }}-backend-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}

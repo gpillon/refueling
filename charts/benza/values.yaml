@@ -11,18 +11,18 @@ service:
   type: ClusterIP
   port: 8080
 
+storage:
+  persistance: true
+  size: 157286400 # 150Mi
+  # storageClass: standard
+
 ingress:
   enabled: false
   className: "nginx"
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: benza.local
+    - host: benza.example.com
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
