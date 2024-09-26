@@ -72,13 +72,15 @@ const Vehicles: React.FC = () => {
   };
 
   const handleDeleteVehicle = async (id: number) => {
-    try {
-      await deleteVehicle(id);
-      fetchVehicles();
-    } catch (err) {
-      setError('Failed to delete vehicle. Please try again.');
-      console.error('Error deleting vehicle:', err);
-    }
+    if (window.confirm(t('confirmDeleteVehicle'))) {
+      try {
+        await deleteVehicle(id);
+        fetchVehicles();
+      } catch (err) {
+        setError('Failed to delete vehicle. Please try again.');
+        console.error('Error deleting vehicle:', err);
+      }
+  }
   };
 
   if (isLoading) {

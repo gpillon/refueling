@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
+  Patch,
   Post,
   Put,
   Req,
@@ -12,6 +15,7 @@ import {
   ApiBearerAuth,
   ApiBody,
   ApiOperation,
+  ApiParam,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -25,6 +29,7 @@ import { RolesGuard } from './roles.guard';
 import { SetMetadata } from '@nestjs/common';
 import { UserLoginDto } from './dto/user-login.dto';
 import { ReadUserDto } from './dto/read-user.dto';
+
 @Controller()
 @ApiTags('Users')
 export class UserController {
@@ -45,7 +50,7 @@ export class UserController {
   })
   findAll() {
     const users = this.usersService.findAll();
-    const returnUsers = plainToInstance(User, users);
+    const returnUsers = plainToInstance(ReadUserDto, users);
     return returnUsers;
   }
 
@@ -62,7 +67,7 @@ export class UserController {
     return this.authService.login(req.user);
   }
 
-  @Post('register')
+  @Post()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @SetMetadata('roles', ['admin'])
   @ApiBearerAuth()
@@ -79,20 +84,35 @@ export class UserController {
     return returnUser;
   }
 
-  @Put('update')
+  @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @SetMetadata('roles', ['admin'])
   @ApiOperation({ summary: 'Update a user' })
+  @ApiParam({ name: 'id', type: String, description: 'User ID' })
   @ApiResponse({
     status: 200,
     description: 'User updated successfully.',
     type: User,
   })
   @ApiBody({ type: UpdateUserDto })
-  async update(@Body() updateUserDto: UpdateUserDto) {
-    const user = await this.usersService.update(updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const user = await this.usersService.update(+id, updateUserDto);
     const returnUser = plainToInstance(User, user);
     return returnUser;
+  }
+
+  @Delete(':id')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @SetMetadata('roles', ['admin'])
+  @ApiOperation({ summary: 'Delete a user' })
+  @ApiParam({ name: 'id', type: String, description: 'User ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'User deleted successfully.',
+  })
+  async delete(@Param('id') id: string) {
+    await this.usersService.delete(+id);
   }
 }

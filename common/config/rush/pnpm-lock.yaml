@@ -55,6 +55,9 @@ importers:
       cross-env:
         specifier: ~7.0.3
         version: 7.0.3
+      dotenv:
+        specifier: ~16.4.5
+        version: 16.4.5
       passport:
         specifier: ~0.7.0
         version: 0.7.0
@@ -14668,6 +14671,7 @@ packages:
       class-transformer: 0.5.1
       class-validator: 0.14.1
       cross-env: 7.0.3
+      dotenv: 16.4.5
       passport: 0.7.0
       passport-jwt: 4.0.1
       passport-local: 1.0.0

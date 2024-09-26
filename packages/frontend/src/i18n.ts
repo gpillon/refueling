@@ -8,7 +8,7 @@ import rmTranslations from './locales/rm.json';
 import naTranslations from './locales/na.json';
 
 const getStoredLanguage = () => {
-  return localStorage.getItem('preferredLanguage') || 'rm';
+  return localStorage.getItem('preferredLanguage') || 'en';
 };
 
 const setStoredLanguage = (lang: string) => {
@@ -26,7 +26,7 @@ i18n
       it: { translation: itTranslations },
     },
     lng: getStoredLanguage(),
-    fallbackLng: 'rm',
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },

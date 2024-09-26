@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-
+import { config } from '../config';
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
@@ -28,7 +28,7 @@ export class RolesGuard implements CanActivate {
 
     const token = authHeader.split(' ')[1];
     const decoded = this.jwtService.verify(token, {
-      secret: '23978b45fcy239b4fcw390cr',
+      secret: config.jwtSecret,
     });
 
     const userRole = decoded.role;

@@ -128,12 +128,14 @@ const Refuelings: React.FC = () => {
   };
 
   const handleDeleteRefueling = async (id: number) => {
-    try {
-      await deleteRefueling(id);
-      fetchRefuelings();
-    } catch (err) {
-      setError('Failed to delete refueling. Please try again.');
+    if (window.confirm(t('confirmDeleteRefueling'))) {
+      try {
+        await deleteRefueling(id);
+        fetchRefuelings();
+      } catch (err) {
+            setError('Failed to delete refueling. Please try again.');
       console.error('Error deleting refueling:', err);
+      }
     }
   };
 

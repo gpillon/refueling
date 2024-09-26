@@ -21,7 +21,7 @@ async function seed() {
 
   for (const user of users) {
     const hashedPassword = await bcrypt.hash(user.password, 10);
-    const existingUser = await usersService.findOne(user.username);
+    const existingUser = await usersService.findOneByUsername(user.username);
     if (existingUser) {
       console.log(`User ${user.username} already exists`);
       continue;

@@ -10,7 +10,7 @@
     "addVehicle": "Butta dentro na maghina",
     "noVehiclesFound": "Nessuna maghina trovata, amico",
     "edit": "Smanetta",
-    "save": "Metti da parte",
+    "save": "Daje!",
     "delete": "Frulla",
     "date": "Data",
     "liters": "Litri",
@@ -61,5 +61,8 @@
     "email": "Email",
     "addUser": "Daje co n'arto",
     "noUsersFound": "Nun ce sta nessuno qua",
-    "user": "Lavoratore"
+    "user": "Lavoratore",
+    "confirmDeleteUser": "Sei sicuro di voler eliminare questo utente?",
+    "confirmDeleteVehicle": "Sei sicuro di voler eliminare questa carretta?",
+    "confirmDeleteRefueling": "Sei sicuro di voler eliminare questo pieno?"
 }

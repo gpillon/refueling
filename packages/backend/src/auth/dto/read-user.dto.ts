@@ -4,7 +4,6 @@ import { IsString } from 'class-validator';
 
 export class ReadUserDto {
   @ApiProperty()
-
   id: number;
 
   @ApiProperty()

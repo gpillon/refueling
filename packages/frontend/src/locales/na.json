@@ -61,5 +61,8 @@
     "email": "Email",
     "addUser": "Aggiungi Utente",
     "noUsersFound": "Nisciun utente truvato",
-    "user": "Utente"
+    "user": "Utente",
+    "confirmDeleteUser": "Sei sicuro di voler eliminare questo utente?",
+    "confirmDeleteVehicle": "Sei sicuro di voler eliminare questa carretta?",
+    "confirmDeleteRefueling": "Sei sicuro di voler eliminare questo pieno?"
 }

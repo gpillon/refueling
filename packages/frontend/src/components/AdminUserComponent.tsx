@@ -118,9 +118,25 @@ const AdminUserComponent: React.FC = () => {
             <option value="admin">{t('admin')}</option>
           </select>
         </div>
+        <div className="mb-4">
+          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+            {t('password')}:
+          </label>
+          <input
+            id="password"
+            type="password"
+            placeholder={t('password')}
+            value={newUser.password}
+            minLength={8}
+            onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
           {t('addUser')}
         </button>
+        
       </form>
 
       {users.length === 0 ? (
@@ -143,6 +159,7 @@ const AdminUserComponent: React.FC = () => {
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
+
                   <div className="mb-4">
                     <label htmlFor={`edit-role-${user.id}`} className="block text-gray-700 text-sm font-bold mb-2">
                       {t('role')}:
@@ -156,6 +173,19 @@ const AdminUserComponent: React.FC = () => {
                       <option value="user">{t('user')}</option>
                       <option value="admin">{t('admin')}</option>
                     </select>
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor={`edit-password-${user.id}`} className="block text-gray-700 text-sm font-bold mb-2">
+                      {t('password')}:
+                    </label>
+                    <input
+                      id={`edit-password-${user.id}`}
+                      type="password"
+                      value={editedUser?.password || ''}
+                      minLength={8}
+                      onChange={(e) => setEditedUser({ ...editedUser!, password: e.target.value })}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
                   </div>
                 </>
               ) : (

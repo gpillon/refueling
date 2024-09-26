@@ -58,6 +58,7 @@ export interface Vehicle {
   
   export interface User {
     id: number;
+    password?: string;
     username: string;
     role: string;
   }

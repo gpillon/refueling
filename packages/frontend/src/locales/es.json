@@ -61,5 +61,8 @@
     "email": "Correo electrónico",
     "addUser": "Añadir Usuario",
     "noUsersFound": "No se encontraron usuarios",
-    "user": "Usuario"
+    "user": "Usuario",
+    "confirmDeleteUser": "¿Estás seguro de que quieres eliminar este usuario?",
+    "confirmDeleteVehicle": "¿Estás seguro de que quieres eliminar este vehículo?",
+    "confirmDeleteRefueling": "¿Estás seguro de que quieres eliminar este repostaje?"
   }
