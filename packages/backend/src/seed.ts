@@ -56,7 +56,7 @@ async function seed() {
 
   for (const vehicle of vehicles) {
     const refuelingsCount = 5 + Math.floor(Math.random() * 16); // 5 to 20 refuelings per vehicle
-
+    let kilometers = 0;
     for (let i = 0; i < refuelingsCount; i++) {
       const currentDate = new Date();
       const twoMonthsAgo = new Date(
@@ -68,9 +68,9 @@ async function seed() {
         twoMonthsAgo.getTime() +
           Math.random() * (currentDate.getTime() - twoMonthsAgo.getTime()),
       );
-      const liters = 20 + Math.random() * 40; // 20 to 60 liters
-      const cost = liters * (1.5 + Math.random()); // Random price per liter between 1.5 and 2.5
-      const kilometers = 100 + Math.random() * 400; // 100 to 500 kilometers
+      const liters = parseFloat((20 + Math.random() * 40).toFixed(2)); // 20 to 60 liters
+      const cost = parseFloat((liters * (1.5 + Math.random())).toFixed(2)); // Random price per liter between 1.5 and 2.5
+      kilometers += Math.floor(100 + Math.random() * 400); // 100 to 500 kilometers
 
       await refuelingService.create({
         date,

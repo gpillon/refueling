@@ -21,6 +21,7 @@ import { Refueling } from './entities/refueling.entity';
 import { CreateRefuelingDto } from './dto/create-refueling.dto';
 import { Query } from '@nestjs/common';
 import { QueryParamsDto } from './dto/query-params.dto';
+import { ReadRefuelingDto } from './dto/read-refueling.dto';
 
 @ApiTags('Refuelings')
 @Controller()
@@ -67,7 +68,7 @@ export class RefuelingController {
   @ApiResponse({
     status: 200,
     description: 'The refueling has been successfully updated.',
-    type: Refueling,
+    type: ReadRefuelingDto,
   })
   update(
     @Param('id') id: string,

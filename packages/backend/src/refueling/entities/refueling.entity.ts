@@ -22,11 +22,13 @@ export class Refueling {
   @Column({ default: FuelType.GASOLINE })
   fuelType: FuelType;
 
-  @ManyToOne(() => Vehicle, (vehicle) => vehicle.refuelings, {
-    onDelete: 'CASCADE',
-  })
   @Column({ nullable: false })
   vehicleId: number;
 
+  @ManyToOne(() => Vehicle, (vehicle) => vehicle.refuelings, {
+    onDelete: 'CASCADE',
+    eager: true,
+
+  })
   vehicle: Vehicle;
 }

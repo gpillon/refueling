@@ -31,7 +31,7 @@ export class RefuelingService {
     const query = this.refuelingRepository.createQueryBuilder('refueling');
 
     if (vehicleId) {
-      query.andWhere('refueling.vehicleId = :vehicleId', { vehicleId });
+      query.andWhere('refueling.vehicle.id = :vehicleId', { vehicleId });
     }
 
     if (startDate) {
@@ -53,7 +53,7 @@ export class RefuelingService {
     return this.refuelingRepository.findOne({
       where: { id },
       relations: ['vehicle'],
-      select: ['id', 'date', 'liters', 'cost', 'kilometers', 'vehicle'],
+      select: ['id', 'date', 'liters', 'cost', 'kilometers',],
     });
   }
 
@@ -64,15 +64,11 @@ export class RefuelingService {
     const vehicle = await this.vehicleService.findOne(
       updateRefuelingDto.vehicleId,
     );
-    Reflect.deleteProperty(updateRefuelingDto, 'vehicleId');
     const updatedRefueling = { ...updateRefuelingDto, vehicle };
-
     await this.refuelingRepository.update(id, updatedRefueling);
+    console.log(updatedRefueling);
 
-    return this.refuelingRepository.findOne({
-      where: { id },
-      relations: ['vehicle'],
-    });
+    return this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {
